@@ -1,111 +1,35 @@
-Include some references~\cite{derivative_of_polynomials_via_double_limit,
-alekseyev2018mathoverflow,oeis_coefficients_u_m_l_k_defined_by_polynomial_identity_3}.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-when an unknown printer took a galley
-of type and scrambled it to make a type specimen book.
-It has survived not only five centuries, but also the leap into electronic
-typesetting, remaining essentially unchanged.
-It was popularised in the 1960s with the release of Letraset sheets containing
-Lorem Ipsum passages, and more
-recently with desktop publishing software like Aldus PageMaker
-including versions of Lorem Ipsum.
-
-Image example
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=1\textwidth]{sections/images/build_the_manuscript_rider}
-  ~\caption{Image example (from caption).}\label{fig:figure}
-\end{figure}
-
-\input{sections/figures/05_fig_coefficients_a}
-
-\begin{equation*}
-  \llceil \nobarfrac{a}{b} \rrfloor_{m}
-\end{equation*}
-\begin{equation*}
-  \llceilCoefficient{a}{b}{m}
-\end{equation*}
-
-And for any natural $m$ we have polynomial identity
-\begin{equation}
-  x^m = \sum_{k=1}^{m} T(m, k) \centralFactorial{x}{k}
-  \label{eq:knuth-power-identity}
-\end{equation}
-where $\centralFactorial{x}{k}$ denotes central factorial defined by
-\begin{equation*}
-  \centralFactorial{x}{n} = x \fallingFactorial{x+\frac{n}{2}-1}{n-1}
-\end{equation*}
-where $\fallingFactorial{n}{k} = n (n-1) (n-2) \cdots (n-k+1)$ denotes falling factorial in Knuth's notation.
-In particular,
-\begin{equation}
-  \label{eq:falling-factorial}
-  \centralFactorial{x}{n}
-  = x \left( x+\frac{n}{2}-1 \right) \left( x+\frac{n}{2}-1 \right) \cdots \left (x+\frac{n}{2}-n-1 \right)
-  = x \prod_{k=1}^{n-1} \left( x+\frac{n}{2}-k \right)
-\end{equation}
-This is an equation reference~\eqref{eq:knuth-power-identity}.
-
-Continuing similarly, we are able to derive the formula for multifold sums of powers,
-which is
-\begin{theorem}[Multifold sums of powers via Newton's series]
-  \label{theorem:multifold-sums-of-powers-via-newtons-series}
-  For non-negative integers $r,n,m$ and an arbitrary integer $t$
+\begin{proposition}[Knuth binomial identity]
   \begin{align*}
-    \KnuthRFoldSum{r}{n}{m} = \sum_{j=0}^{m} \Delta^{j} t^{m} \left[ \left( \sum_{s=1}^{r} (-1)^{j+s-1} \binom{j+t-1}{j+s} \KnuthRFoldSum{r-s}{n}{0} \right) + \binom{n-t+r}{j+r} \right]
-  \end{align*}
-  \begin{proof}
-    By Newton's series for power and repeated
-    applications of the segmented hockey stick identity.
-  \end{proof}
-\end{theorem}
-
-\begin{proposition}[Falling factorial]
-  \begin{align*}
-    \fallingFactorial{x}{n} = x(x-1)(x-2)(x-3)\cdots(x-n+1) = \prod_{k=0}^{n-1}(x-k)
+    \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^k = s^n
   \end{align*}
 \end{proposition}
 
-\begin{proposition}
+\begin{proposition}[Falling binomial identity]
   \begin{align*}
-    \frac{\fallingFactorial{x}{n}}{n!} = \binom{x}{n}
+    \binom{n}{k} = \frac{\fallingFactorial{n}{k}}{k!}
   \end{align*}
 \end{proposition}
 
-\subsection{Rising factorials}
-\begin{proposition} [Rising factorial]
+\begin{proposition}[Binomial coefficients in stirling form]
   \begin{align*}
-    \risingFactorial{x}{n} = x(x+1)(x+2)(x+3)\cdots(x+n-1) = \prod_{k=0}^{n-1}(x+k)
+    \binom{n}{k} = \frac{\fallingFactorial{n}{k}}{k!}
+    &= \frac{1}{k!} \sum_{j=0}^{k} (-1)^{j} \stirlingi{k}{j} n^j \\
+    &= \frac{1}{k!} \left(
+      \stirlingi{k}{0} n^0 - \stirlingi{k}{1} n^1 + \stirlingi{k}{2} n^2 + \cdots + (-1)^{k} \stirlingi{k}{k} n^k
+    \right)
   \end{align*}
 \end{proposition}
 
-\begin{proposition}
+\begin{corollary}
   \begin{align*}
-    \frac{\risingFactorial{x}{n}}{n!} = \binom{x+n-1}{n}
+    \binom{r-sk}{n} = \frac{1}{n!} \sum_{j=0}^{n} (-1)^{j} \stirlingi{n}{j} (r-sk)^j
+  \end{align*}
+\end{corollary}
+
+\begin{proposition}[Binomial theorem]
+  \begin{align*}
+    (r-sk)^j
+    &= \sum_{t=0}^{j} (-1)^{j-t} \binom{j}{t} r^{j} sk^{j-t} \\
+    &= (-1)^{j} (sk)^{j} + \sum_{t=1}^{j} (-1)^{j-t} \binom{j}{t} r^{j} (sk)^{j-t}
   \end{align*}
 \end{proposition}
-
-\subsection{Central factorials}
-\begin{lemma}[Central factorial]
-  \begin{align*}
-    \centralFactorial{n}{k}
-    = n \left( n + \frac{k}{2} -1 \right)\left( n + \frac{k}{2} -2 \right) \cdots \left( n - \frac{k}{2} +1 \right)
-    = n \prod_{j=1}^{k-1} \left( n + \frac{k}{2} -j \right)
-  \end{align*}
-\end{lemma}
-
-\begin{proposition}
-  \begin{align*}
-    \centralFactorial{n}{k} = n \fallingFactorial{n+\frac{k}{2}-1}{k-1}
-  \end{align*}
-\end{proposition}
-
-\subsection{Derivatives}
-
-\begin{align*}
-  \od{x}{y} = \frac{f(x+h)-f(x)}{h}
-\end{align*}
-
-\begin{align*}
-  \odd{x}{y}{3} = \frac{f(x+h)-f(x)}{h}
-\end{align*}
