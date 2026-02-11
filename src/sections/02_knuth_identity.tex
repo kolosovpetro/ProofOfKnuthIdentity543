@@ -1,5 +1,6 @@
 
 \begin{proposition}[Knuth binomial identity]
+  \label{prop:knuth-identity}
   \begin{align*}
     \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^k = s^n
   \end{align*}
@@ -22,3 +23,67 @@
     \Delta^{t} F(x) = \sum_{k=0}^{t} \binom{t}{k} (-1)^{n-k} \binom{r-s(x+k)}{n}
   \end{align*}
 \end{corollary}
+By setting $x=0$ in equation above yields
+\begin{corollary}[Forward difference of Binomial function]
+  \begin{align*}
+    \Delta^{t} F(x) = \sum_{k=0}^{t} \binom{t}{k} \binom{r-sk}{n} (-1)^{n-k}
+  \end{align*}
+\end{corollary}
+By setting $t=n$ gives the structure of~\eqref{prop:knuth-identity}, such that
+\begin{corollary}[Forward difference of Binomial function]
+  \begin{align*}
+    \Delta^{n} F(x) = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{n-k}
+  \end{align*}
+\end{corollary}
+Still, it is not quite clear why $\Delta^{n} F(x) = (-1)^n s^n$, until
+we refer to relation given by Knuth in Concrete mathematics, see (5.42)
+\begin{align*}
+  \sum_{k} \binom{n}{k} (-1)^k \left[
+    a_0 + a_1 k^1 + a_2 k^2 + \cdots + a_n k^n
+  \right] = (-1)^n n! a_n
+\end{align*}
+meaning that $n$-th difference of a polynomial of degree $n$ in $k$ equals
+to the coefficient of $k^n$ times $(-1)^n n!$.
+
+Now we notice that $F(x) = \binom{r-sx}{n}$ is a polynomial of degree $n$ in $r-sk$
+\begin{corollary}
+  \begin{align*}
+    \binom{r-sk}{n}
+    &= \sum_{j=0}^{n} \frac{(-1)^{j}}{n!} \stirlingi{n}{j} (r-sk)^j \\
+    &= \frac{(-1)^{0}}{n!} \stirlingi{n}{0} (r-sk)^0
+    + \frac{(-1)^{1}}{n!} \stirlingi{n}{1} (r-sk)^1
+    + \cdots
+    + \frac{(-1)^{n}}{n!} \stirlingi{n}{n} (r-sk)^n
+  \end{align*}
+\end{corollary}
+Thus, the coefficient of $k^n$ is
+\begin{align*}
+  a_n = [k^n] \frac{(-1)^{n}}{n!} \stirlingi{n}{n} (r-sk)^n
+\end{align*}
+By binomial theorem
+\begin{align*}
+  (r-sk)^n = \sum_{m=0}^{n} (-1)^{n-m} \binom{n}{m} r^{m} s^{n-m} k^{n-m}
+\end{align*}
+Thus,
+\begin{align*}
+  [k^n] (r-sk)^n
+  = (-1)^{n-0} \binom{n}{0} r^{0} s^{n-0}
+  = (-1)^{n} s^{n}
+\end{align*}
+Thus,
+\begin{align*}
+  a_n = \frac{(-1)^{n}}{n!} \stirlingi{n}{n} (-1)^{n} s^{n}
+  = \frac{s^{n}}{n!}
+\end{align*}
+Thus,
+\begin{align*}
+  \Delta^{n} F(x)
+  = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{n-k}
+  = (-1)^n n! a_n
+  = (-1)^n n! \frac{s^{n}}{n!}
+\end{align*}
+Hence, Knuth identity is indeed true
+\begin{align*}
+  s^n = (-1)^n \Delta^{n} F(x)
+  = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{k}
+\end{align*}
