@@ -26,13 +26,13 @@
 By setting $x=0$ in equation above yields
 \begin{corollary}[Forward difference of Binomial function]
   \begin{align*}
-    \Delta^{t} F(x) = \sum_{k=0}^{t} \binom{t}{k} \binom{r-sk}{n} (-1)^{n-k}
+    \Delta^{t} F(0) = \sum_{k=0}^{t} \binom{t}{k} \binom{r-sk}{n} (-1)^{n-k}
   \end{align*}
 \end{corollary}
 By setting $t=n$ gives the structure of~\eqref{prop:knuth-identity}, such that
 \begin{corollary}[Forward difference of Binomial function]
   \begin{align*}
-    \Delta^{n} F(x) = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{n-k}
+    \Delta^{n} F(0) = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{n-k}
   \end{align*}
 \end{corollary}
 Still, it is not quite clear why $\Delta^{n} F(x) = (-1)^n s^n$, until
@@ -45,7 +45,7 @@ we refer to relation given by Knuth in Concrete mathematics, see (5.42)
 meaning that $n$-th difference of a polynomial of degree $n$ in $k$ equals
 to the coefficient of $k^n$ times $(-1)^n n!$.
 
-Now we notice that $F(x) = \binom{r-sx}{n}$ is a polynomial of degree $n$ in $r-sk$
+Now we notice that $\binom{r-sk}{n}$ is a polynomial of degree $n$ in $r-sk$
 \begin{corollary}
   \begin{align*}
     \binom{r-sk}{n}
@@ -58,7 +58,9 @@ Now we notice that $F(x) = \binom{r-sx}{n}$ is a polynomial of degree $n$ in $r-
 \end{corollary}
 Thus, the coefficient of $k^n$ is
 \begin{align*}
-  a_n = [k^n] \frac{(-1)^{n}}{n!} \stirlingi{n}{n} (r-sk)^n
+  a_n
+  = [k^n] \frac{(-1)^{n}}{n!} \stirlingi{n}{n} (r-sk)^n
+  = \frac{(-1)^{n}}{n!} \stirlingi{n}{n} [k^n] (r-sk)^n
 \end{align*}
 By binomial theorem
 \begin{align*}
@@ -77,13 +79,13 @@ Thus,
 \end{align*}
 Thus,
 \begin{align*}
-  \Delta^{n} F(x)
+  \Delta^{n} F(0)
   = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{n-k}
   = (-1)^n n! a_n
   = (-1)^n n! \frac{s^{n}}{n!}
 \end{align*}
 Hence, Knuth identity is indeed true
 \begin{align*}
-  s^n = (-1)^n \Delta^{n} F(x)
+  s^n = (-1)^n \Delta^{n} F(0)
   = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{k}
 \end{align*}
