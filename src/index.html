@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
-  <link rel="canonical" href="https://kolosovpetro.github.io/math/test/" />
-  <meta name="keywords" content="sums of powers, Newton interpolation formula, finite differences, binomial coefficients, Faulhaber's formula, Bernoulli numbers, Bernoulli polynomials, interpolation, discrete convolution, combinatorics, polynomial identities, Stirling numbers of the second kind, Eulerian numbers, Worpitzky identity, Pascal's triangle, OEIS" />
-  <meta name="description" content="LaTeX template for GitHub including general CI/CD actions and Mathematica templates." />
+  <link rel="canonical" href="https://kolosovpetro.github.io/math/proof-of-knuth-binomial-identity" />
+  <meta name="keywords" content="binomial identities, combinatorics, concrete mathematics, knuth" />
+  <meta name="description" content="We proof a remarkable Binomial identity (5.43) given by Donald Knuth in his fundamental work Concrete Mathematics." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Petro Kolosov" />
-  <meta name="dcterms.date" content="2026-02-05" />
-  <title>LaTeX Template for GitHub</title>
+  <meta name="dcterms.date" content="2026-02-13" />
+  <title>Proof of Knuth’s Binomial identity (5.43)</title>
   <style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -210,318 +210,182 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">LaTeX Template for GitHub</h1>
+<h1 class="title">Proof of Knuth’s Binomial identity (5.43)</h1>
 <p class="author">Petro Kolosov</p>
-<p class="date">2026-02-05</p>
+<p class="date">2026-02-13</p>
 <div class="abstract">
 <div class="abstract-title">Abstract</div>
-<p>Your abstract here.</p>
+<p>In this manuscript we proof a remarkable Binomial identity (5.43)
+given by Donald Knuth in his fundamental work entitled Concrete
+Mathematics.</p>
 </div>
 </header>
-<h1 id="sec:introduction">Introduction</h1>
-<p>Include some references <span class="citation"
-data-cites="derivative_of_polynomials_via_double_limit alekseyev2018mathoverflow oeis_coefficients_u_m_l_k_defined_by_polynomial_identity_3">(Kolosov
-2024, 2018c; Alekseyev, Max 2018)</span>. Lorem Ipsum is simply dummy
-text of the printing and typesetting industry. Lorem Ipsum has been the
-industry’s standard dummy text ever since the 1500s, when an unknown
-printer took a galley of type and scrambled it to make a type specimen
-book. It has survived not only five centuries, but also the leap into
-electronic typesetting, remaining essentially unchanged. It was
-popularised in the 1960s with the release of Letraset sheets containing
-Lorem Ipsum passages, and more recently with desktop publishing software
-like Aldus PageMaker including versions of Lorem Ipsum.</p>
-<p>Image example</p>
-<figure id="fig:figure" data-latex-placement="H">
-<p><img src="sections/images/build_the_manuscript_rider.png"
-style="width:100.0%" alt="image" />  </p>
-<figcaption>Image example (from caption).</figcaption>
-</figure>
-<div class="center">
-<div id="tab:table_of_coefficients_a">
-<table>
-<caption>Coefficients <span
-class="math inline">\({\mathbf{A}}_{m,r}\)</span>. See OEIS sequences
- <span class="citation"
-data-cites="oeis_numerators_of_the_coefficient_a_m_r oeis_denominators_of_the_coefficient_a_m_r">(Kolosov
-2018a, 2018b)</span>.</caption>
-<thead>
-<tr>
-<th style="text-align: center;"><span
-class="math inline">\(m/r\)</span></th>
-<th style="text-align: center;">0</th>
-<th style="text-align: center;">1</th>
-<th style="text-align: center;">2</th>
-<th style="text-align: center;">3</th>
-<th style="text-align: center;">4</th>
-<th style="text-align: center;">5</th>
-<th style="text-align: center;">6</th>
-<th style="text-align: center;">7</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">6</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">30</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">-14</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">140</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">-120</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">630</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">-1386</td>
-<td style="text-align: center;">660</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">2772</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">-21840</td>
-<td style="text-align: center;">18018</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">12012</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">-450054</td>
-<td style="text-align: center;">491400</td>
-<td style="text-align: center;">-60060</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">51480</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><span class="math display">\[\begin{equation*}
-  \left\lceil\kern-3.5pt\left\lceil\genfrac{}{}{0pt}{}{a}{b}
-\right\rfloor\kern-3.5pt\right\rfloor_{m}
-\end{equation*}\]</span> <span class="math display">\[\begin{equation*}
-  \left\lceil\kern-3.5pt\left\lceil\genfrac{}{}{0pt}{}{a}{b}
-\right\rfloor\kern-3.5pt\right\rfloor_{m}
-\end{equation*}\]</span></p>
-<p>And for any natural <span class="math inline">\(m\)</span> we have
-polynomial identity <span class="math display">\[\begin{equation}
-  x^m = \sum_{k=1}^{m} T(m, k) x^{[k]}
-  \label{eq:knuth-power-identity}
-\end{equation}\]</span> where <span
-class="math inline">\(x^{[k]}\)</span> denotes central factorial defined
-by <span class="math display">\[\begin{equation*}
-  x^{[n]} = x \left(x+\frac{n}{2}-1\right)_{n-1}
-\end{equation*}\]</span> where <span
-class="math inline">\(\left(n\right)_{k} = n (n-1) (n-2) \cdots
-(n-k+1)\)</span> denotes falling factorial in Knuth’s notation. In
-particular, <span class="math display">\[\begin{equation}
-  \label{eq:falling-factorial}
-  x^{[n]}
-  = x \left( x+\frac{n}{2}-1 \right) \left( x+\frac{n}{2}-1 \right)
-\cdots \left (x+\frac{n}{2}-n-1 \right)
-  = x \prod_{k=1}^{n-1} \left( x+\frac{n}{2}-k \right)
-\end{equation}\]</span> This is an equation reference <a
-href="#eq:knuth-power-identity" data-reference-type="eqref"
-data-reference="eq:knuth-power-identity">[eq:knuth-power-identity]</a>.</p>
-<p>Continuing similarly, we are able to derive the formula for multifold
-sums of powers, which is</p>
-<div id="theorem:multifold-sums-of-powers-via-newtons-series"
-class="theorem">
-<p><strong>Theorem 1</strong> (Multifold sums of powers via Newton’s
-series). <em>For non-negative integers <span
-class="math inline">\(r,n,m\)</span> and an arbitrary integer <span
-class="math inline">\(t\)</span> <span
-class="math display">\[\begin{align*}
-    \Sigma^{r}\,{n}^{m} = \sum_{j=0}^{m} \Delta^{j} t^{m} \left[ \left(
-\sum_{s=1}^{r} (-1)^{j+s-1} \binom{j+t-1}{j+s} \Sigma^{r-s}\,{n}^{0}
-\right) + \binom{n-t+r}{j+r} \right]
-\end{align*}\]</span></em></p>
-<div class="proof">
-<p><em><em>Proof.</em> By Newton’s series for power and repeated
-applications of the segmented hockey stick identity. ◻</em></p>
-</div>
-</div>
-<div class="proposition">
-<p><strong>Proposition 2</strong> (Falling factorial). <em><span
-class="math display">\[\begin{align*}
-    \left(x\right)_{n} = x(x-1)(x-2)(x-3)\cdots(x-n+1) =
-\prod_{k=0}^{n-1}(x-k)
+<h1 id="introduction">Introduction</h1>
+<p>In this manuscript we proof a remarkable Binomial identity (5.43)
+given by Donald Knuth in his fundamental work entitled Concrete
+Mathematics, see <span class="citation"
+data-cites="graham1994concrete">(Graham, Ronald L. and Knuth, Donald E.
+and Patashnik, Oren 1994, 190)</span></p>
+<div id="prop:knuth-identity" class="proposition">
+<p><strong>Proposition 1</strong> (Knuth’s Binomial identity (5.43)).
+<em>For non-negative integers <span class="math inline">\(n\)</span>,
+and for arbitrary integers <span class="math inline">\(s, r\)</span>
+<span class="math display">\[\begin{align*}
+    \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^k = s^n.
 \end{align*}\]</span></em></p>
 </div>
-<div class="proposition">
-<p><strong>Proposition 3</strong>. <em><span
+<h1 id="proof-of-knuths-binomial-identity">Proof of Knuth’s Binomial
+identity</h1>
+<p>We begin our proof by recalling the formula for <span
+class="math inline">\(n\)</span>-order finite differences of function
+<span class="math inline">\(f\)</span> <span
 class="math display">\[\begin{align*}
-    \frac{\left(x\right)_{n}}{n!} = \binom{x}{n}
-\end{align*}\]</span></em></p>
-</div>
-<h2 id="rising-factorials">Rising factorials</h2>
-<div class="proposition">
-<p><strong>Proposition 4</strong> (Rising factorial). <em><span
+  \Delta^{n} f(x) = \sum_{k=0}^{n} \binom{n}{k} (-1)^{n-k} f(x+k).
+\end{align*}\]</span> Now, we define the binomial function <span
+class="math inline">\(F\)</span>, such that <span
 class="math display">\[\begin{align*}
-    x^{\left(n\right)} = x(x+1)(x+2)(x+3)\cdots(x+n-1) =
-\prod_{k=0}^{n-1}(x+k)
-\end{align*}\]</span></em></p>
-</div>
-<div class="proposition">
-<p><strong>Proposition 5</strong>. <em><span
+  F(x) = \binom{r-sx}{n}.
+\end{align*}\]</span> Thus, the <span
+class="math inline">\(t\)</span>-order forward finite difference of
+<span class="math inline">\(F\)</span> is <span
 class="math display">\[\begin{align*}
-    \frac{x^{\left(n\right)}}{n!} = \binom{x+n-1}{n}
-\end{align*}\]</span></em></p>
-</div>
-<h2 id="central-factorials">Central factorials</h2>
-<div class="lemma">
-<p><strong>Lemma 6</strong> (Central factorial). <em><span
+  \Delta^{t} F(x) = \sum_{k=0}^{t} \binom{t}{k} \binom{r-s(x+k)}{n}
+(-1)^{n-k}
+\end{align*}\]</span> We may notice that the equation above quite
+reminds the structure of Knuth’s binomial identity <a
+href="#prop:knuth-identity" data-reference-type="eqref"
+data-reference="prop:knuth-identity">[prop:knuth-identity]</a>. By
+evaluating <span class="math inline">\(\Delta^{t} F(x)\)</span> in zero,
+we reach our goal even further, because <span
 class="math display">\[\begin{align*}
-    n^{[k]}
-    = n \left( n + \frac{k}{2} -1 \right)\left( n + \frac{k}{2} -2
-\right) \cdots \left( n - \frac{k}{2} +1 \right)
-    = n \prod_{j=1}^{k-1} \left( n + \frac{k}{2} -j \right)
-\end{align*}\]</span></em></p>
-</div>
-<div class="proposition">
-<p><strong>Proposition 7</strong>. <em><span
-class="math display">\[\begin{align*}
-    n^{[k]} = n \left(n+\frac{k}{2}-1\right)_{k-1}
-\end{align*}\]</span></em></p>
-</div>
-<h2 id="derivatives">Derivatives</h2>
+  \Delta^{t} F(0) = \sum_{k=0}^{t} \binom{t}{k} \binom{r-sk}{n}
+(-1)^{n-k}.
+\end{align*}\]</span> Next, by setting <span
+class="math inline">\(t=n\)</span> gives the exact structure of <a
+href="#prop:knuth-identity" data-reference-type="eqref"
+data-reference="prop:knuth-identity">[prop:knuth-identity]</a>, such
+that <span class="math display">\[\begin{align*}
+  \Delta^{n} F(0) = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n}
+(-1)^{n-k}.
+\end{align*}\]</span> Still, it may not be immediately clear why <span
+class="math inline">\(\Delta^{n} F(x) = (-1)^n s^n\)</span>. To make
+things work, we refer to the formula (5.42) in Concrete mathematics,
+see <span class="citation" data-cites="graham1994concrete">(Graham,
+Ronald L. and Knuth, Donald E. and Patashnik, Oren 1994, 190)</span>,
+<span class="math display">\[\begin{align*}
+  \sum_{k} \binom{n}{k} (-1)^k \left[
+    a_0 + a_1 k^1 + a_2 k^2 + \cdots + a_n k^n
+  \right] = (-1)^n n! a_n,
+\end{align*}\]</span> which states that <span
+class="math inline">\(n\)</span>-th difference of a polynomial of degree
+<span class="math inline">\(n\)</span> in <span
+class="math inline">\(k\)</span> equals to the coefficient of <span
+class="math inline">\(k^n\)</span> multiplied by <span
+class="math inline">\((-1)^n n!\)</span>. This helps us a lot, because
+the binomial coefficient <span
+class="math inline">\(\binom{r-sk}{n}\)</span> is actually a polynomial
+of degree <span class="math inline">\(n\)</span> in <span
+class="math inline">\(r-sk\)</span>. The famous identity in Stirling
+numbers of the first kind <span
+class="math inline">\(\genfrac{[}{]}{0pt}{}{n}{k}\)</span> shows it
+clearly</p>
 <p><span class="math display">\[\begin{align*}
-  \frac{\mathrm{d} x}{\mathrm{d} y} = \frac{f(x+h)-f(x)}{h}
-\end{align*}\]</span></p>
-<p><span class="math display">\[\begin{align*}
-  \frac{\mathrm{d}^{3} x}{\mathrm{d} y^{3}} = \frac{f(x+h)-f(x)}{h}
+  \binom{r-sk}{n}
+  &amp;= \frac{(-1)^{0}}{n!} \genfrac{[}{]}{0pt}{}{n}{0} (r-sk)^0
+  + \frac{(-1)^{1}}{n!} \genfrac{[}{]}{0pt}{}{n}{1} (r-sk)^1
+  + \cdots
+  + \frac{(-1)^{n}}{n!} \genfrac{[}{]}{0pt}{}{n}{n} (r-sk)^n \\
+  &amp;= \sum_{j=0}^{n} \frac{(-1)^{j}}{n!} \genfrac{[}{]}{0pt}{}{n}{j}
+(r-sk)^j.
+\end{align*}\]</span> Thus, the coefficient <span
+class="math inline">\(a_n\)</span> of <span
+class="math inline">\(k^n\)</span> is <span
+class="math display">\[\begin{align*}
+  a_n
+  = [k^n] \frac{(-1)^{n}}{n!} \genfrac{[}{]}{0pt}{}{n}{n} (r-sk)^n
+  = \frac{(-1)^{n}}{n!} \genfrac{[}{]}{0pt}{}{n}{n} [k^n] (r-sk)^n.
+\end{align*}\]</span> By Binomial theorem, <span
+class="math display">\[\begin{align*}
+  (r-sk)^n = \sum_{m=0}^{n} (-1)^{n-m} \binom{n}{m} r^{m} s^{n-m}
+k^{n-m}.
+\end{align*}\]</span> Thus, <span class="math display">\[\begin{align*}
+  [k^n] (r-sk)^n
+  = (-1)^{n-0} \binom{n}{0} r^{0} s^{n-0}.
+  = (-1)^{n} s^{n}
+\end{align*}\]</span> Hence, the coefficient <span
+class="math inline">\(a_n\)</span> of <span
+class="math inline">\(k^n\)</span> equals to <span
+class="math display">\[\begin{align*}
+  a_n = \frac{(-1)^{n}}{n!} \genfrac{[}{]}{0pt}{}{n}{n} (-1)^{n} s^{n}
+  = \frac{s^{n}}{n!}.
+\end{align*}\]</span> Which implies that, <span
+class="math display">\[\begin{align*}
+  \Delta^{n} F(0)
+  = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{n-k}
+  = (-1)^n n! a_n
+  = (-1)^n n! \frac{s^{n}}{n!}.
+\end{align*}\]</span> Therefore, the Knuth’s identity <a
+href="#prop:knuth-identity" data-reference-type="eqref"
+data-reference="prop:knuth-identity">[prop:knuth-identity]</a> is indeed
+true <span class="math display">\[\begin{align*}
+  s^n = (-1)^n \Delta^{n} F(0)
+  = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{k}.
+\end{align*}\]</span> This completes the proof of Proposition <a
+href="#prop:knuth-identity" data-reference-type="eqref"
+data-reference="prop:knuth-identity">[prop:knuth-identity]</a>. 0◻</p>
+<p>It is quite remarkable that although the identity <a
+href="#prop:knuth-identity" data-reference-type="eqref"
+data-reference="prop:knuth-identity">[prop:knuth-identity]</a> is a
+special case of forward finite differences of <span
+class="math inline">\(F(x) = \binom{r-sx}{n}\)</span> evaluated in zero
+<span class="math inline">\(s^n = (-1)^n \Delta^{n} F(0)\)</span> – it
+holds for all <span class="math inline">\(x\)</span>, because the
+coefficient of <span class="math inline">\(k^n\)</span> remains <span
+class="math inline">\(s^n\)</span> for all <span
+class="math inline">\(x\)</span></p>
+<div id="prop:generalized-knuths-identity" class="proposition">
+<p><strong>Proposition 2</strong> (Generalized Knuths’ binomial
+identity). <em>For non-negative integers <span
+class="math inline">\(n\)</span>, and for arbitrary integers <span
+class="math inline">\(s, r, x\)</span> <span
+class="math display">\[\begin{align*}
+    s^n = (-1)^n \Delta^{n} F(x)
+    = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sx-sk}{n} (-1)^{k}.
+\end{align*}\]</span></em></p>
+</div>
+<p>Because the coefficient of <span class="math inline">\(k^n\)</span>
+in <span class="math inline">\(\binom{r-sx-sk}{n}\)</span> is <span
+class="math display">\[\begin{align*}
+  a_n
+  = \frac{(-1)^{n}}{n!} \genfrac{[}{]}{0pt}{}{n}{n} [k^n] ((r-sx)-sk)^n
+  = \frac{s^{n}}{n!}.
+\end{align*}\]</span> Because, by Binomial theorem <span
+class="math display">\[\begin{align*}
+  [k^n] ((r-sx)-sk)^n = (-1)^{n-0} \binom{n}{0} (r-sx)^{0} s^{n-0}
+  = (-1)^n s^n.
 \end{align*}\]</span></p>
 <h1 class="unnumbered" id="conclusions">Conclusions</h1>
-<p>Conclusions of your manuscript.</p>
-<p>Here is an itemize list with adjusted margins</p>
-<ul>
-<li><p>Conclusion 1 ....</p></li>
-<li><p>Conclusion 2 ....</p></li>
-<li><p>Conclusion 3 ....</p></li>
-</ul>
-<h1 class="unnumbered" id="acknowledgements">Acknowledgements</h1>
-<p>The author is grateful to [Full Name] for his valuable contribution
-[contribution] about the fact that [interesting claim].</p>
-<p><span><strong>Metadata</strong></span></p>
-<ul>
-<li><p><strong>Initial release date:</strong> December 24,
-2025.</p></li>
-<li><p><strong>Current release date:</strong> 2026-02-05.</p></li>
-<li><p><strong>Version:</strong> <code>Local-0.1.0</code></p></li>
-<li><p><strong>MSC2010:</strong> 05A19, 05A10, 41A15, 11B68, 11B73,
-11B83</p></li>
-<li><p><strong>Keywords:</strong> Sums of powers, Newton’s interpolation
-formula, Finite differences, Binomial coefficients, Faulhaber’s formula,
-Bernoulli numbers, Bernoulli polynomials, Interpolation, Approximation,
-Discrete convolution, Combinatorics, Polynomial identities, Central
-factorial numbers, Stirling numbers, Eulerian numbers, Worpitzky
-identity, Pascal’s triangle, OEIS</p></li>
-<li><p><strong>License:</strong> This work is licensed under a <a
-href="https://creativecommons.org/licenses/by/4.0/"><code>CC BY 4.0 License</code></a>.</p></li>
-<li><p><strong>DOI:</strong> <a
-href="https://doi.org/10.5281/zenodo.18040979"><code>https://doi.org/10.5281/zenodo.18040979</code></a></p></li>
-<li><p><strong>Web Version:</strong> <a
-href="https://kolosovpetro.github.io/sums-of-powers-newtons-formula/"><code>kolosovpetro.github.io/sums-of-powers-newtons-formula</code></a></p></li>
-<li><p><strong>Sources:</strong> <a
-href="https://github.com/kolosovpetro/NewtonsInterpolationFormulaAndSumsOfPowers"><code>github.com/kolosovpetro/NewtonsFormulaAndSumsOfPowers</code></a></p></li>
-<li><p><strong>ORCID:</strong> <a
-href="https://orcid.org/0000-0002-6544-8880"><code>0000-0002-6544-8880</code></a></p></li>
-<li><p><strong>Email:</strong> <a
-href="mailto:kolosovp94@gmail.com"><code>kolosovp94@gmail.com</code></a></p></li>
-</ul>
+<p>In this manuscript we have shown that the remarkable Binomial
+identity <a href="#prop:knuth-identity" data-reference-type="eqref"
+data-reference="prop:knuth-identity">[prop:knuth-identity]</a> given by
+Donald Knuth in his fundamental work entitled Concrete Mathematics is
+indeed true. In addition, we provide a generalization for identity
+(5.42) for all <span class="math inline">\(x\)</span>, that is <a
+href="#prop:generalized-knuths-identity" data-reference-type="eqref"
+data-reference="prop:generalized-knuths-identity">[prop:generalized-knuths-identity]</a>.</p>
+<figure id="fig:knuth" data-latex-placement="H">
+<p><img src="sections/images/knuth.png" style="width:66.0%"
+alt="image" />  </p>
+<figcaption> Professor Knuth at Computer Science, the Bible, and Music -
+2018 Lectures.</figcaption>
+</figure>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="list">
-<div id="ref-alekseyev2018mathoverflow" class="csl-entry"
-role="listitem">
-Alekseyev, Max. 2018. <span>“<span class="nocase">MathOverflow answer
-297916/113033</span>.”</span> In <em><span class="nocase">MathOverflow
-https://mathoverflow.net/a/297916/113033</span></em>, 297916/113033. <a
-href="https://mathoverflow.net/a/297916/113033"
-class="uri">Https://mathoverflow.net/a/297916/113033</a>.
-</div>
-<div id="ref-oeis_numerators_of_the_coefficient_a_m_r" class="csl-entry"
-role="listitem">
-Kolosov, Petro. 2018a. <span>“<span class="nocase">Entry A302971 in The
-On-Line Encyclopedia of Integer Sequences</span>.”</span> In <em><span
-class="nocase">The On-Line Encyclopedia of Integer
-Sequences</span></em>, No. A302971. <a href="https://oeis.org/A302971"
-class="uri">Https://oeis.org/A302971</a>.
-</div>
-<div id="ref-oeis_denominators_of_the_coefficient_a_m_r"
-class="csl-entry" role="listitem">
-Kolosov, Petro. 2018b. <span>“<span class="nocase">Entry A304042 in The
-On-Line Encyclopedia of Integer Sequences</span>.”</span> In <em><span
-class="nocase">The On-Line Encyclopedia of Integer
-Sequences</span></em>, No. A304042. <a href="https://oeis.org/A304042"
-class="uri">Https://oeis.org/A304042</a>.
-</div>
-<div id="ref-oeis_coefficients_u_m_l_k_defined_by_polynomial_identity_3"
-class="csl-entry" role="listitem">
-Kolosov, Petro. 2018c. <span>“<span class="nocase">The coefficients U(m,
-l, k), m = 3 defined by the polynomial identity</span>.”</span> In
-<em><span class="nocase">The On-Line Encyclopedia of Integer
-Sequences</span></em>, No. A316387. <a href="https://oeis.org/A316387"
-class="uri">Https://oeis.org/A316387</a>.
-</div>
-<div id="ref-derivative_of_polynomials_via_double_limit"
-class="csl-entry" role="listitem">
-Kolosov, Petro. 2024. <span>“Finding the Derivative of Polynomials via
-Double Limit.”</span> <em>GitHub</em>.
+<div id="ref-graham1994concrete" class="csl-entry" role="listitem">
+Graham, Ronald L. and Knuth, Donald E. and Patashnik, Oren. 1994.
+<em><span class="nocase">Concrete mathematics: A foundation for computer
+science (second edition)</span></em>. <span>Addison-Wesley Publishing
+Company, Inc.</span>
 </div>
 </div>
 </body>

@@ -1,0 +1,36 @@
+\begin{proposition}[Falling binomial identity]
+  \begin{align*}
+    \binom{n}{k} = \frac{\fallingFactorial{n}{k}}{k!}
+  \end{align*}
+\end{proposition}
+
+\begin{proposition}[Binomial-Stirling form]
+  \begin{align*}
+    \binom{n}{k}
+    = \frac{\fallingFactorial{n}{k}}{k!}
+    = \frac{1}{k!} \sum_{j=0}^{k} (-1)^{j} \stirlingi{k}{j} n^j
+  \end{align*}
+\end{proposition}
+Thus, the explicit form
+\begin{corollary}[Explicit Binomial-Stirling form]
+  \begin{align*}
+    \binom{n}{k} = \frac{1}{k!} \left(
+      \stirlingi{k}{0} n^0 - \stirlingi{k}{1} n^1 + \stirlingi{k}{2} n^2 + \cdots + (-1)^{k-1} \stirlingi{k}{k-1} n^{k-1}  + (-1)^{k} \stirlingi{k}{k} n^k
+    \right)
+  \end{align*}
+\end{corollary}
+By changing summation order yields
+\begin{corollary} [Reversed Binomial-Stirling form]
+  \begin{align*}
+    \binom{n}{k}
+    = \frac{1}{k!} \sum_{j=0}^{k} (-1)^{k-j} \stirlingi{k}{k-j} n^{k-j}
+  \end{align*}
+\end{corollary}
+
+% \begin{proposition}[Binomial theorem]
+%   \begin{align*}
+%     (r-sk)^j
+%     &= \sum_{t=0}^{j} (-1)^{j-t} \binom{j}{t} r^{j} sk^{j-t} \\
+%     &= (-1)^{j} (sk)^{j} + \sum_{t=1}^{j} (-1)^{j-t} \binom{j}{t} r^{j} (sk)^{j-t}
+%   \end{align*}
+% \end{proposition}
