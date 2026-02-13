@@ -1,21 +1,22 @@
-# GitHub LaTeX Template
+# Proof of Knuth's Binomial identity (5.43)
 
 ## Abstract
 
-- LaTeX template for GitHub including general CI/CD actions and Mathematica templates.
-- Best compatible with JetBrains Rider 2024.3.8 Build #RD-243.26574.73, built on May 18, 2025.
-- Plugin: https://plugins.jetbrains.com/plugin/9473-texify-idea
+In this manuscript we proof a remarkable
+Binomial identity (5.43) given by Donald Knuth in
+his fundamental work entitled
+Concrete Mathematics.
 
 
 ## Metadata
 
-- **Initial release date:** December 24, 2025.
-- **MSC2010:** 05A19, 05A10, 41A15, 11B68, 11B73, 11B83
-- **Keywords:** Sums of powers, Newton's interpolation formula, Finite differences, Binomial coefficients, Faulhaber's formula, Bernoulli numbers, Bernoulli polynomials, Interpolation, Approximation, Discrete convolution, Combinatorics, Polynomial identities, Central factorial numbers, Stirling numbers, Eulerian numbers, Worpitzky identity, Pascal's triangle, OEIS
+- **Initial release date:** February 13 (Friday), 2026.
+- **MSC2010:** 05A19, 05A10
+- **Keywords:**
 - **License:** This work is licensed under a [CC BY 4.0 License](https://creativecommons.org/licenses/by/4.0/)
-- **DOI:** https://doi.org/10.5281/zenodo.18040979
-- **Web Version:** https://kolosovpetro.github.io/math/test
-- **Sources:** https://github.com/kolosovpetro/github-latex-template
+- **DOI:** 
+- **Web Version:** https://kolosovpetro.github.io/math/proof-of-knuth-binomial-identity
+- **Sources:** https://github.com/kolosovpetro/ProofOfKnuthIdentity543
 - **ORCID:** https://orcid.org/0000-0002-6544-8880
 - **Email:** kolosovp94@gmail.com
 
