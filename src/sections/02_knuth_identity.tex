@@ -1,91 +1,110 @@
 
-\begin{proposition}[Knuth binomial identity]
-  \label{prop:knuth-identity}
-  \begin{align*}
-    \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^k = s^n
-  \end{align*}
-\end{proposition}
-
-\begin{proposition}[Forward finite differences]
-  \begin{align*}
-    \Delta^{n} f(x) = \sum_{k=0}^{n} \binom{n}{k} (-1)^{n-k} f(x+k)
-  \end{align*}
-\end{proposition}
-
-\begin{proposition} [Binomial function]
-  \begin{align*}
-    F(x) = \binom{r-sx}{n}
-  \end{align*}
-\end{proposition}
-
-\begin{corollary}[Forward difference of Binomial function]
-  \begin{align*}
-    \Delta^{t} F(x) = \sum_{k=0}^{t} \binom{t}{k} (-1)^{n-k} \binom{r-s(x+k)}{n}
-  \end{align*}
-\end{corollary}
-By setting $x=0$ in equation above yields
-\begin{corollary}[Forward difference of Binomial function]
-  \begin{align*}
-    \Delta^{t} F(0) = \sum_{k=0}^{t} \binom{t}{k} \binom{r-sk}{n} (-1)^{n-k}
-  \end{align*}
-\end{corollary}
-By setting $t=n$ gives the structure of~\eqref{prop:knuth-identity}, such that
-\begin{corollary}[Forward difference of Binomial function]
-  \begin{align*}
-    \Delta^{n} F(0) = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{n-k}
-  \end{align*}
-\end{corollary}
-Still, it is not quite clear why $\Delta^{n} F(x) = (-1)^n s^n$, until
-we refer to relation given by Knuth in Concrete mathematics, see (5.42)
+We begin our proof by
+recalling the formula for $n$-order finite differences of function $f$
+\begin{align*}
+  \Delta^{n} f(x) = \sum_{k=0}^{n} \binom{n}{k} (-1)^{n-k} f(x+k).
+\end{align*}
+Now, we define the binomial function $F$, such that
+\begin{align*}
+  F(x) = \binom{r-sx}{n}.
+\end{align*}
+Thus, the $t$-order forward finite difference of $F$ is
+\begin{align*}
+  \Delta^{t} F(x) = \sum_{k=0}^{t} \binom{t}{k} \binom{r-s(x+k)}{n} (-1)^{n-k}
+\end{align*}
+We may notice that the equation above quite reminds the structure of
+Knuth's binomial identity~\eqref{prop:knuth-identity}.
+By evaluating $\Delta^{t} F(x)$ in zero, we reach our goal even further,
+because
+\begin{align*}
+  \Delta^{t} F(0) = \sum_{k=0}^{t} \binom{t}{k} \binom{r-sk}{n} (-1)^{n-k}.
+\end{align*}
+Next, by setting $t=n$ gives the exact structure
+of~\eqref{prop:knuth-identity}, such that
+\begin{align*}
+  \Delta^{n} F(0) = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{n-k}.
+\end{align*}
+Still, it may not be immediately clear why $\Delta^{n} F(x) = (-1)^n s^n$.
+To make things work,
+we refer to the formula (5.42) in Concrete mathematics,
+see~\cite[p. 190]{graham1994concrete},
 \begin{align*}
   \sum_{k} \binom{n}{k} (-1)^k \left[
     a_0 + a_1 k^1 + a_2 k^2 + \cdots + a_n k^n
-  \right] = (-1)^n n! a_n
+  \right] = (-1)^n n! a_n,
 \end{align*}
-meaning that $n$-th difference of a polynomial of degree $n$ in $k$ equals
-to the coefficient of $k^n$ times $(-1)^n n!$.
+which states that $n$-th difference of a polynomial of degree $n$ in $k$ equals
+to the coefficient of $k^n$ multiplied by $(-1)^n n!$.
+This helps us a lot, because the binomial coefficient
+$\binom{r-sk}{n}$ is actually a polynomial of degree $n$ in $r-sk$.
+The famous identity in Stirling numbers of the first kind $\stirlingi{n}{k}$
+shows it clearly
 
-Now we notice that $\binom{r-sk}{n}$ is a polynomial of degree $n$ in $r-sk$
-\begin{corollary}
-  \begin{align*}
-    \binom{r-sk}{n}
-    &= \sum_{j=0}^{n} \frac{(-1)^{j}}{n!} \stirlingi{n}{j} (r-sk)^j \\
-    &= \frac{(-1)^{0}}{n!} \stirlingi{n}{0} (r-sk)^0
-    + \frac{(-1)^{1}}{n!} \stirlingi{n}{1} (r-sk)^1
-    + \cdots
-    + \frac{(-1)^{n}}{n!} \stirlingi{n}{n} (r-sk)^n
-  \end{align*}
-\end{corollary}
-Thus, the coefficient of $k^n$ is
+\begin{align*}
+  \binom{r-sk}{n}
+  &= \frac{(-1)^{0}}{n!} \stirlingi{n}{0} (r-sk)^0
+  + \frac{(-1)^{1}}{n!} \stirlingi{n}{1} (r-sk)^1
+  + \cdots
+  + \frac{(-1)^{n}}{n!} \stirlingi{n}{n} (r-sk)^n \\
+  &= \sum_{j=0}^{n} \frac{(-1)^{j}}{n!} \stirlingi{n}{j} (r-sk)^j.
+\end{align*}
+Thus, the coefficient $a_n$ of $k^n$ is
 \begin{align*}
   a_n
   = [k^n] \frac{(-1)^{n}}{n!} \stirlingi{n}{n} (r-sk)^n
-  = \frac{(-1)^{n}}{n!} \stirlingi{n}{n} [k^n] (r-sk)^n
+  = \frac{(-1)^{n}}{n!} \stirlingi{n}{n} [k^n] (r-sk)^n.
 \end{align*}
-By binomial theorem
+By Binomial theorem,
 \begin{align*}
-  (r-sk)^n = \sum_{m=0}^{n} (-1)^{n-m} \binom{n}{m} r^{m} s^{n-m} k^{n-m}
+  (r-sk)^n = \sum_{m=0}^{n} (-1)^{n-m} \binom{n}{m} r^{m} s^{n-m} k^{n-m}.
 \end{align*}
 Thus,
 \begin{align*}
   [k^n] (r-sk)^n
-  = (-1)^{n-0} \binom{n}{0} r^{0} s^{n-0}
+  = (-1)^{n-0} \binom{n}{0} r^{0} s^{n-0}.
   = (-1)^{n} s^{n}
 \end{align*}
-Thus,
+Hence, the coefficient $a_n$ of $k^n$ equals to
 \begin{align*}
   a_n = \frac{(-1)^{n}}{n!} \stirlingi{n}{n} (-1)^{n} s^{n}
-  = \frac{s^{n}}{n!}
+  = \frac{s^{n}}{n!}.
 \end{align*}
-Thus,
+Which implies that,
 \begin{align*}
   \Delta^{n} F(0)
   = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{n-k}
   = (-1)^n n! a_n
-  = (-1)^n n! \frac{s^{n}}{n!}
+  = (-1)^n n! \frac{s^{n}}{n!}.
 \end{align*}
-Hence, Knuth identity is indeed true
+Therefore, the Knuth's identity~\eqref{prop:knuth-identity} is indeed true
 \begin{align*}
   s^n = (-1)^n \Delta^{n} F(0)
-  = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{k}
+  = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sk}{n} (-1)^{k}.
+\end{align*}
+This completes the proof of Proposition~\eqref{prop:knuth-identity}. \qed
+
+It is quite remarkable that
+although
+the identity~\eqref{prop:knuth-identity} is a special case of
+forward finite differences of $F(x) = \binom{r-sx}{n}$ evaluated
+in zero $s^n = (-1)^n \Delta^{n} F(0)$ -- it holds for all $x$, because
+the coefficient of $k^n$ remains $s^n$ for all $x$
+\begin{proposition} [Generalized Knuths' binomial identity]
+  \label{prop:generalized-knuths-identity}
+  For non-negative integers $n$, and for arbitrary integers $s, r, x$
+  \begin{align*}
+    s^n = (-1)^n \Delta^{n} F(x)
+    = \sum_{k=0}^{n} \binom{n}{k} \binom{r-sx-sk}{n} (-1)^{k}.
+  \end{align*}
+\end{proposition}
+Because the coefficient of $k^n$ in $\binom{r-sx-sk}{n}$ is
+\begin{align*}
+  a_n
+  = \frac{(-1)^{n}}{n!} \stirlingi{n}{n} [k^n] ((r-sx)-sk)^n
+  = \frac{s^{n}}{n!}.
+\end{align*}
+Because, by Binomial theorem
+\begin{align*}
+  [k^n] ((r-sx)-sk)^n = (-1)^{n-0} \binom{n}{0} (r-sx)^{0} s^{n-0}
+  = (-1)^n s^n.
 \end{align*}

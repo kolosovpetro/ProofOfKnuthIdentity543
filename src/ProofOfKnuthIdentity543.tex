@@ -66,13 +66,13 @@
 \newcommand \bernoulli [2][B] {{#1}_{#2}}
 \newcommand{\stirlingi}{\genfrac{[}{]}{0pt}{}}
 
-% Ordinary derivatives
-\newcommand{\od}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
-\newcommand{\odd}[3]{\frac{\mathrm{d}^{#3} #1}{\mathrm{d} #2^{#3}}}
+% % Ordinary derivatives
+% \newcommand{\od}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+% \newcommand{\odd}[3]{\frac{\mathrm{d}^{#3} #1}{\mathrm{d} #2^{#3}}}
 
-% Partial derivatives
-\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\pdd}[3]{\frac{\partial^{#3} #1}{\partial #2^{#3}}}
+% % Partial derivatives
+% \newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+% \newcommand{\pdd}[3]{\frac{\partial^{#3} #1}{\partial #2^{#3}}}
 
 % free foot note
 \let\svthefootnote\thefootnote
@@ -98,24 +98,24 @@
 
 %\numberwithin{equation}{section}
 
-\title[Proof of Knuth Binomial identity (5.43)]
-{Proof of Knuth Binomial identity (5.43)}
-% \author[Petro Kolosov]{Petro Kolosov}
-% \date{\today}
+\title[Proof of Knuth's Binomial identity (5.43)]
+{Proof of Knuth's Binomial identity (5.43)}
+\author[Petro Kolosov]{Petro Kolosov}
+\date{\today}
 
 % metadata
 % \input{metadata/msc2010.tex}
 % \input{metadata/keywords.tex}
-% \input{metadata/hypersetup.tex}
+\input{metadata/hypersetup.tex}
 % \address{DevOps Engineer}
-% \email{kolosovp94@gmail.com}
-% \urladdr{https://kolosovpetro.github.io}
+\email{kolosovp94@gmail.com}
+\urladdr{https://kolosovpetro.github.io}
 
 \begin{document}
 
-% \begin{abstract}
-%   \input{sections/abstract}
-% \end{abstract}
+\begin{abstract}
+  \input{sections/abstract}
+\end{abstract}
 
 \maketitle
 
@@ -124,24 +124,25 @@
 % \tableofcontents
 
 
-\section{Preliminaries}
-\input{sections/01_preliminaries.tex}
+\section{Introduction}
+\input{sections/01_introduction.tex}
 
-\clearpage
+% \section{Preliminaries}
+% \input{sections/01_preliminaries.tex}
 
-\section{Knuth identity}
+\section{Proof of Knuth's Binomial identity}
 \input{sections/02_knuth_identity.tex}
 
 
-% \section*{Conclusions}
-% \input{sections/conclusions}
+\section*{Conclusions}
+\input{sections/conclusions.tex}
 
 
 % \section*{Acknowledgements}
 % \input{sections/acknowledgements}
 
-% \bibliographystyle{unsrt}
-% \bibliography{ProofOfKnuthIdentity543}
+\bibliographystyle{unsrt}
+\bibliography{ProofOfKnuthIdentity543}
 
 % \clearpage
 
