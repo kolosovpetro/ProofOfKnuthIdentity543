@@ -7,6 +7,7 @@ given by Donald Knuth in his fundamental work entitled Concrete Mathematics.
 
 ## Metadata
 
+- **Current release date:** February 14 (St. Valentine's day), 2026.
 - **Initial release date:** February 13 (Friday), 2026.
 - **MSC2010:** 05A19, 05A10
 - **Keywords:** Binomial identities, Combinatorics, Concrete mathematics, Knuth
