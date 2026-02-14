@@ -2,11 +2,8 @@
 
 ## Abstract
 
-In this manuscript we proof a remarkable
-Binomial identity (5.43) given by Donald Knuth in
-his fundamental work entitled
-Concrete Mathematics.
-
+In this manuscript we prove a remarkable Binomial identity (5.43) 
+given by Donald Knuth in his fundamental work entitled Concrete Mathematics.
 
 ## Metadata
 
