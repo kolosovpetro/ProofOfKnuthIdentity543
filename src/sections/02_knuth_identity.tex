@@ -45,7 +45,11 @@ This helps us a lot, because the binomial coefficient
 $\binom{r-sk}{n}$ is actually a polynomial of degree $n$ in $(r-sk)$.
 The famous identity in unsigned Stirling numbers of the first kind $\stirlingi{n}{k}$
 shows it clearly
-
+\begin{align*}
+  \binom{n}{k}
+  = \sum_{j=0}^{k} \frac{(-1)^{k-j}}{k!} \stirlingi{k}{j} n^j
+\end{align*}
+In particular,
 \begin{align*}
   \binom{r-sk}{n}
   &= \frac{(-1)^{n-0}}{n!} \stirlingi{n}{0} (r-sk)^0
